@@ -42,5 +42,9 @@ crashlytics.properties
 crashlytics-build.properties
 
 ### Project specific files and directories
+target/
 doc/
 resources/net/efabrika/util/employees_db/
+.classpath
+.project
+.settings/

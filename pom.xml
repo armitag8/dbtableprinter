@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+    <name>Database Table Printer</name>
+    <artifactId>databasetableprinter</artifactId>
+    <groupId>org.u4ium</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <description>A maven-packaged fork of h2run's utility for printing result sets prettily to the command line.</description>
+
+    <url>https://github.com/armitag8/databasetableprinter</url>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://spdx.org/licenses/MIT.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>U4ium</name>
+        <url>https://urium.org/</url>
+    </organization>
+
+    <scm>
+        <url>https://github.com/arnitag8/databasetableprinter</url>
+        <connection>git@github.com:armitag8/databasetableprinter.git</connection>
+        <developerConnection>git@github.com:armitag8/databasetableprinter.git</developerConnection>
+    </scm>
+
+    <issueManagement>
+        <system>Issues</system>
+        <url>https://github.com/armitag8/databasetableprinter/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>Pipelines</system>
+        <url>https://github.com/armitag8/databasetableprinter/pipelines</url>
+    </ciManagement>
+
+    <contributors>
+        <contributor>
+            <name>Joe Armitage</name>
+            <email>joe@armitage.com</email>
+            <url>http://u4ium.org/</url>
+            <organization>U4ium</organization>
+            <organizationUrl>https://u4ium.org/</organizationUrl>
+            <roles>
+                <role>Maven Packager</role>
+            </roles>
+            <timezone>Eastern (GMT -5)</timezone>
+        </contributor>
+        <contributor>
+            <name>Hami Galip Torun</name>
+            <email>hamitorun@e-fabrika.net</email>
+            <url>http://www.efabrika.com.br/</url>
+            <organization>eFabrica</organization>
+            <organizationUrl>http://www.efabrika.com.br/</organizationUrl>
+            <roles>
+                <role>Owner and prinicipal developer</role>
+            </roles>
+            <timezone>(GMT -3)</timezone>
+        </contributor>
+    </contributors>
+
+    <developers>
+        <developer>
+            <id>somedev</id>
+            <email>some.developer@example.com</email>
+            <name>Some Developer</name>
+            <organization>Example Organization</organization>
+            <organizationUrl>http://example.com/</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Amsterdam</timezone>
+        </developer>
+        <developer>
+            <id>otherdev</id>
+            <email>other.developer@example.com</email>
+            <name>Other Developer</name>
+            <organization>Example Organization</organization>
+            <organizationUrl>http://example.com/</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Amsterdam</timezone>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <main.class>org.u4ium.db.util.DBTablePrinter</main.class>
+        <java.version>12</java.version>
+        <junit.jupiter.version>5.4.2</junit.jupiter.version>
+        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+        <maven.jar.plugin.version>3.1.1</maven.jar.plugin.version>
+        <maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>${main.class}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
