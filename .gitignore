@@ -48,3 +48,4 @@ resources/net/efabrika/util/employees_db/
 .classpath
 .project
 .settings/
+.vscode
