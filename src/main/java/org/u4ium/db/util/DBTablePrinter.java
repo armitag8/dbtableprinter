@@ -106,6 +106,11 @@ public class DBTablePrinter {
     public static final int CATEGORY_BOOLEAN = 5;
 
     /**
+     * Column type category for <code>BOOLEAN</code> columns.
+     */
+    public static final int CATEGORY_MONEY = 6;
+
+    /**
      * Column type category for types for which the type name
      * will be printed instead of the content, like <code>BLOB</code>,
      * <code>BINARY</code>, <code>ARRAY</code> etc.
@@ -481,12 +486,19 @@ public class DBTablePrinter {
                     switch (category) {
                         case CATEGORY_DOUBLE:
 
-                            // For real numbers, format the string value to have 3 digits
+                            // For real numbers, format the string value to have 4 digits
                             // after the point. THIS IS TOTALLY ARBITRARY and can be
                             // improved to be CONFIGURABLE.
                             if (!value.equals("NULL")) {
                                 Double dValue = rs.getDouble(i+1);
-                                value = String.format("%.3f", dValue);
+                                value = String.format("%.4f", dValue);
+                            }
+                            break;
+
+                        case CATEGORY_MONEY:
+                            if (!value.equals("NULL")) {
+                                Double dValue = rs.getDouble(i+1);
+                                value = String.format("$%.2f", dValue);
                             }
                             break;
 
@@ -500,6 +512,18 @@ public class DBTablePrinter {
                                 value = value.substring(0, maxStringColWidth - 3) + "...";
                             }
                             break;
+                        
+                        case CATEGORY_BOOLEAN:
+
+                        // For real numbers, format the string value to have 3 digits
+                        // after the point. THIS IS TOTALLY ARBITRARY and can be
+                        // improved to be CONFIGURABLE.
+                        if (!value.equals("NULL")) {
+                            Boolean bValue = rs.getBoolean(i+1);
+                            value = String.format("%s", bValue);
+                        }
+                        break;
+                            
                     }
 
                     // Adjust the column width
@@ -646,9 +670,11 @@ public class DBTablePrinter {
 
             case Types.REAL:
             case Types.DOUBLE:
-            case Types.DECIMAL:
             case Types.NUMERIC:
                 return CATEGORY_DOUBLE;
+            
+            case Types.DECIMAL:
+                return CATEGORY_MONEY:
 
             case Types.DATE:
             case Types.TIME:
