@@ -674,7 +674,6 @@ public class DBTablePrinter {
                 return CATEGORY_DOUBLE;
             
             case Types.DECIMAL:
-            case Types.BIT:
                 return CATEGORY_MONEY;
 
             case Types.DATE:
@@ -685,6 +684,7 @@ public class DBTablePrinter {
                 return CATEGORY_DATETIME;
 
             case Types.BOOLEAN:
+            case Types.BIT:
                 return CATEGORY_BOOLEAN;
 
             case Types.VARCHAR:
