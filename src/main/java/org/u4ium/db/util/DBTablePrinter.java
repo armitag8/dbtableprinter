@@ -674,6 +674,7 @@ public class DBTablePrinter {
                 return CATEGORY_DOUBLE;
             
             case Types.DECIMAL:
+            case Types.BIT:
                 return CATEGORY_MONEY;
 
             case Types.DATE:
